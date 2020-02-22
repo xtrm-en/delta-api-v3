@@ -1,0 +1,78 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+        	name = "gradel"
+            url = "https://plugins.gradle.org/m2"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.4"
+    }
+}
+
+apply plugin: "com.github.johnrengelman.shadow"
+apply plugin: 'forge'
+
+version = "1.0.0"
+group= "me.xtrm.delta" 
+archivesBaseName = "DeltaAPI"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = 'UTF-8'
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "eclipse"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    
+    maven {
+		url = "https://atlaspluginloader.github.io/maven/" // APL-Core
+	}
+}
+
+dependencies {
+	compile("me.xtrm.atlaspluginloader:apl-core:0.2.0-rc1") { // APL-Core
+		exclude module: "asm-debug-all" // exclude too up-to-date libs
+		exclude module: "log4j-api"
+		exclude module: "log4j-core"
+	}
+}
+
+shadowJar {
+	dependencies {
+        include(dependency('me.xtrm.atlaspluginloader:apl-core'))
+    }
+
+    exclude 'dummyThing'
+    
+    exclude 'GradleStart.class' // exclude this because apparently its there
+    exclude 'GradleStartServer.class'
+    exclude 'GradleStart$AssetIndex.class'
+    exclude 'GradleStart$AssetIndex$AssetEntry.class'
+    exclude '.cache'
+    exclude 'net/minecraftforge'
+
+    classifier = ""
+
+}
+
+build.dependsOn shadowJar
