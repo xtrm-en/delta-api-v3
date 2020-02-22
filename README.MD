@@ -5,14 +5,14 @@ Le repository contenant l'API publique de Delta Client.
 ## Utiliser
 
 Vous pouvez importer l'API en utilisant Gradle 
-```
+```gradle
 repositories {
-    jcenter()
-    
-    maven {
-    	url = "https://nkosmos.github.io/maven/" // DeltaAPI
-    }
-    maven {
+	jcenter()
+	
+	maven {
+		url = "https://nkosmos.github.io/maven/" // DeltaAPI
+	}
+	maven {
 		url = "https://atlaspluginloader.github.io/maven/" // APL-Core
 	}
 }
