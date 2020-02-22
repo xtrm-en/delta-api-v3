@@ -14,6 +14,6 @@ git clone https://github.com/xTrM-EN/DeltaAPI.git
 # Enter the cloned repo
 cd DeltaAPI/
 
-# Setup the devenv
+# Build the artifact
 gradlew build
 ```
