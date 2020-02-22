@@ -50,9 +50,6 @@ repositories {
     jcenter()
     
     maven {
-    	url = "https://nkosmos.github.io/maven/" // DeltaAPI
-    }
-    maven {
 		url = "https://atlaspluginloader.github.io/maven/" // APL-Core
 	}
 }
@@ -74,7 +71,6 @@ publishing.publications {
 shadowJar {
 	dependencies {
         include(dependency('me.xtrm.atlaspluginloader:apl-core'))
-        include(dependency('me.xtrm.delta:delta-api'))
     }
 
     exclude 'dummyThing'
