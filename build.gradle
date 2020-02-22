@@ -23,11 +23,16 @@ buildscript {
     }
 }
 
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
 apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'forge'
 
 version = "1.0.0"
-group= "me.xtrm.delta" 
+group = "me.xtrm.delta" 
 archivesBaseName = "DeltaAPI"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -45,6 +50,9 @@ repositories {
     jcenter()
     
     maven {
+    	url = "https://nkosmos.github.io/maven/" // DeltaAPI
+    }
+    maven {
 		url = "https://atlaspluginloader.github.io/maven/" // APL-Core
 	}
 }
@@ -57,9 +65,16 @@ dependencies {
 	}
 }
 
+publishing.publications {
+	mavenJava(MavenPublication) {
+        from components.java
+    }
+}
+
 shadowJar {
 	dependencies {
         include(dependency('me.xtrm.atlaspluginloader:apl-core'))
+        include(dependency('me.xtrm.delta:delta-api'))
     }
 
     exclude 'dummyThing'
@@ -72,7 +87,6 @@ shadowJar {
     exclude 'net/minecraftforge'
 
     classifier = ""
-
 }
 
 build.dependsOn shadowJar
