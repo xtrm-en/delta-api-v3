@@ -86,3 +86,4 @@ shadowJar {
 }
 
 build.dependsOn shadowJar
+tasks.reobf.mustRunAfter shadowJar
