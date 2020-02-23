@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	compile("me.xtrm.delta:delta-api:1.0.0")
+	compile("me.xtrm.delta:delta-api:1.1.0")
 }
 ```
 
