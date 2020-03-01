@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-	compile("me.xtrm.atlaspluginloader:apl-core:0.2.0-rc1") { // APL-Core
+	compile("me.xtrm.atlaspluginloader:apl-core:1.0.0") { // APL-Core
 		exclude module: "asm-debug-all" // exclude too up-to-date libs
 		exclude module: "log4j-api"
 		exclude module: "log4j-core"
