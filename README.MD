@@ -1,6 +1,6 @@
 # DeltaAPI
 
-Le repository contenant l'API publique de Delta Client. 
+Ce repository contient l'API publique de Delta Client. 
 
 ## Utiliser
 
@@ -18,15 +18,13 @@ repositories {
 }
 
 dependencies {
-	compile("me.xtrm.delta:delta-api:1.1.0")
+	compile("me.xtrm.delta:delta-api:1.2s.0")
 }
 ```
 
 ## Compiler
 
-La dernière version stable se trouve dans l'onglet "releases".
-
-Si vous souhaitez le compiler vous-mêmes:
+Si vous souhaitez le compiler vous-même:
 ```bash
 # Clone the current repo
 git clone https://github.com/xTrM-EN/DeltaAPI.git
@@ -35,5 +33,5 @@ git clone https://github.com/xTrM-EN/DeltaAPI.git
 cd DeltaAPI/
 
 # Build the artifact
-gradlew build
+./build.bat
 ```
