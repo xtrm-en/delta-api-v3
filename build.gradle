@@ -1,0 +1,82 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+        	name = "gradel"
+            url = "https://plugins.gradle.org/m2"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+apply plugin: 'forge'
+
+version = "2.1.0"
+group = "me.xtrm.delta" 
+archivesBaseName = "delta-api"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = 'UTF-8'
+
+minecraft {
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "run"
+}
+
+repositories {
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+	implementation 'org.yaml:snakeyaml:1.21'
+	
+	implementation('com.github.Hippah:LWJEB:5.0.0'){
+		exclude group: "org.ow2.asm"
+	}
+}
+
+publishing.publications {
+	mavenJava(MavenPublication) {
+        from components.java
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+task unobfJar(type: Jar, dependsOn: classes) {
+	classifier = 'deobf'
+	from sourceSets.main.output
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+    archives unobfJar
+}
